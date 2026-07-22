@@ -6,8 +6,10 @@ authors:
   - family-names: Soares
     given-names: Mark J.
 version: 1.0.0
-date-released: 2026-07-21
+date-released: 2026-07-22
 repository-code: "https://github.com/markkasaurus/albert-algebra-lean"
+doi: 10.5281/zenodo.21482444
+url: "https://doi.org/10.5281/zenodo.21482443"
 license: Apache-2.0
 keywords:
   - Lean 4

@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/markkasaurus/albert-algebra-lean/actions/workflows/ci.yml/badge.svg)](https://github.com/markkasaurus/albert-algebra-lean/actions/workflows/ci.yml)
 [![Comparator](https://github.com/markkasaurus/albert-algebra-lean/actions/workflows/comparator.yml/badge.svg)](https://github.com/markkasaurus/albert-algebra-lean/actions/workflows/comparator.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21482443.svg)](https://doi.org/10.5281/zenodo.21482443)
 
 This repository formalizes the real Albert algebra as the Hermitian
 three-by-three matrices over the octonions. It proves the Jordan identity and
@@ -71,6 +72,12 @@ Further details are in [Theorems](docs/THEOREMS.md),
 [Architecture](docs/ARCHITECTURE.md), and
 [Verification](docs/VERIFICATION.md). Historical sources for the mathematical
 statements are listed in [References](docs/REFERENCES.md).
+
+## Citation
+
+Version DOI: [10.5281/zenodo.21482444](https://doi.org/10.5281/zenodo.21482444)
+
+Concept DOI: [10.5281/zenodo.21482443](https://doi.org/10.5281/zenodo.21482443)
 
 ## License
 
