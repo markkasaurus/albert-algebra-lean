@@ -1,0 +1,15 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "AlbertAlgebraVerification",
+  "theorem_names": [
+    "Albert.Verification.jordan_identity",
+    "Albert.Verification.glennie_violation",
+    "Albert.Verification.non_speciality"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

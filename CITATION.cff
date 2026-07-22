@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it using this metadata."
+title: "The Albert Algebra in Lean 4: Jordan Identity and Non-Speciality"
+type: software
+authors:
+  - family-names: Soares
+    given-names: Mark J.
+version: 1.0.0
+date-released: 2026-07-21
+repository-code: "https://github.com/markkasaurus/albert-algebra-lean"
+license: Apache-2.0
+keywords:
+  - Lean 4
+  - formalized mathematics
+  - Albert algebra
+  - octonions
+  - Jordan algebra
+  - Glennie identity

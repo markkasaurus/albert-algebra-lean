@@ -1,0 +1,58 @@
+name: Comparator
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+
+jobs:
+  comparator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: "1.24.0"
+          cache: false
+
+      - name: Install Lean and trusted Mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-github-cache: false
+          use-mathlib-cache: true
+
+      - name: Install comparator dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/comparator-tools/bin"
+
+          go install github.com/zouuup/landrun/cmd/landrun@5ed4a3db3a4ad930d577215c6b9abaa19df7f99f
+          cp "$(go env GOPATH)/bin/landrun" "$RUNNER_TEMP/comparator-tools/bin/landrun"
+
+          git clone https://github.com/leanprover/lean4export.git "$RUNNER_TEMP/lean4export"
+          git -C "$RUNNER_TEMP/lean4export" checkout 3e1cdfe206ec3f54bae4a548d814ce9b2c1bb43d
+          (cd "$RUNNER_TEMP/lean4export" && lake build lean4export)
+          cp "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" \
+            "$RUNNER_TEMP/comparator-tools/bin/lean4export"
+
+          git clone https://github.com/leanprover/comparator.git "$RUNNER_TEMP/comparator"
+          git -C "$RUNNER_TEMP/comparator" checkout 71b52ec29e06d4b7d882726553b1ceb99a2499e0
+          (cd "$RUNNER_TEMP/comparator" && lake build comparator)
+          cp "$RUNNER_TEMP/comparator/.lake/build/bin/comparator" \
+            "$RUNNER_TEMP/comparator-tools/bin/comparator"
+
+          echo "$RUNNER_TEMP/comparator-tools/bin" >> "$GITHUB_PATH"
+
+      - name: Run comparator
+        run: ./scripts/run-comparator.sh
